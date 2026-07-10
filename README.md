@@ -1,7 +1,8 @@
 #                                           Raystalker
 
-Raytracing using C++ , Walnut GUI framework.
+A multi-threaded Raytracing using C++ , Walnut GUI framework.
 
+It's currenlty a reference for learning Ray tracing. When done with maths, will do a complete overhaul.
 
 
 ## Gallery
@@ -23,7 +24,7 @@ It can work with other toolchain , but you'll have to manually set build system.
 
 ```powershell
 
-> git clone --recursive https://github.com/ArcShahi/Raystalker.git
+> git clone --recursive https://github.com/ArcShahi/RayStalker.git
 
 # Run Setup.bat in scripts dir
 > scripts\Setup.bat
@@ -32,4 +33,4 @@ It can work with other toolchain , but you'll have to manually set build system.
 ```
 
 >[!Warning]
-> I've modified `Walnut/Random.hpp` , `Walnut/Random.cpp` to add `thread_local` in `s_RandomEngine`, so every theread get's it's own Random engine. It reduces random number generation.
+> I've modified `Walnut/Random.hpp` , `Walnut/Random.cpp` to add `thread_local` in `s_RandomEngine`, so every thread get's it's own Random engine. It reduces random number generation.
