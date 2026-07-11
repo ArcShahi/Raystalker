@@ -3,6 +3,9 @@
 bin/
 bin-int/
 
+# stb : include it manually
+include\stb_image_write.h
+
 # Files
 *.vcxproj
 *.vcxproj.user
