@@ -76,6 +76,7 @@ public:
 		{
 			m_Renderer.ResetFrameIndex();
 		}
+		
 
 		ImGui::End();
 
@@ -106,6 +107,7 @@ public:
 			ImGui::Separator();
 			ImGui::PopID();
 		}
+		ImGui::DragInt("Bounces", &m_Renderer.GetSettings().Bounces, 1, 1, 50);
 		ImGui::End();
 
 		// Fixed the black border between border

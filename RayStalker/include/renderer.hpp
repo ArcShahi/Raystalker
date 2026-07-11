@@ -8,13 +8,15 @@
 #include "camera.hpp"
 #include "ray.hpp"
 #include "scene.hpp"
+#include <string>
 // The input will be some scene description,output is an image
 class Renderer
 {
 public:
-	struct Settings
+	struct Settings 
 	{
-		bool Accumulate{ true };
+	    int Bounces{ 5 };
+	    bool Accumulate{ true };
 	};
 public:
 	Renderer() = default;
@@ -24,6 +26,7 @@ public:
 	std::shared_ptr<Walnut::Image> GetFinalImage()const { return m_FinalImage; }
 	void ResetFrameIndex() { m_FrameIndex = 1; }
 	Settings& GetSettings() { return m_Settings; }
+	void SaveScene(std::string& filename);
 private:
 
 	struct HitPayload

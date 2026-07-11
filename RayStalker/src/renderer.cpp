@@ -2,9 +2,11 @@
 #include <glm/geometric.hpp>
 #include <numeric>
 #include <algorithm>
-#include <thread>
 #include <execution>
-#include <Walnut/Random.h>
+
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include <stb_image_write.h>
+
 
 static uint32_t ConvertToRGBA(const glm::vec4& color)
 {
@@ -136,6 +138,21 @@ void Renderer::Render(const Scene& scene, const Camera& camera)
 		m_FrameIndex = 1;
 }
 
+void Renderer::SaveScene(std::string& filename)
+{
+	if (!filename.ends_with(".png"))
+		filename += ".png";
+
+	stbi_write_png(
+		filename.c_str(),
+		m_FinalImage->GetWidth(),
+		m_FinalImage->GetHeight(),
+		4,
+		m_ImageData,
+		m_FinalImage->GetWidth() * sizeof(uint32_t)
+	);
+}
+
 glm::vec4 Renderer::PerPixel(uint32_t x, uint32_t y)
 {
 	Ray ray{};
@@ -149,8 +166,7 @@ glm::vec4 Renderer::PerPixel(uint32_t x, uint32_t y)
 	uint32_t seed{ x + y * m_FinalImage->GetWidth() };
 	seed *= m_FrameIndex;
 
-	const int bounces{ 5 };
-	for (int i{ 0 }; i < bounces; ++i)
+	for (int i{ 0 }; i < m_Settings.Bounces; ++i)
 	{
 		seed += i;
 		auto payload{ TraceRay(ray) };
